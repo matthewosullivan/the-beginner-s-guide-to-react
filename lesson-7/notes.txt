@@ -1,0 +1,10 @@
+One important thing to note about the style prop is that the 
+values are not vendor prefixed for you, so you'll have to do that yourself.
+
+There are a couple other problems within in-line styles as well. 
+There are a couple libraries to overcome some of these problems. 
+Popular libraries include styled components, emotion, and glamorous. 
+
+https://www.styled-components.com/
+https://emotion.sh/
+https://glamorous.rocks/
