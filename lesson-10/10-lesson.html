@@ -13,7 +13,14 @@ class StopWatch extends React.Component {
             } else {
                 const startTime = Date.now() - this.state.lapse
                 this.timer = setInterval(() => {
-                    this.setState({lapse: Date.now() - startTime})
+                    this.setState(
+                        {
+                            lapse: Date.now() - startTime
+                        },
+                        () => {
+                            console.log(this.state.lapse)
+                        }
+                    )
                 });
             }
             return {running: !state.running}
@@ -22,6 +29,9 @@ class StopWatch extends React.Component {
     handleClearClick = () => {
         clearInterval(this.timer)
         this.setState({lapse: 0, running: false})
+    }
+    componentWillUnmount() {
+        clearInterval(this.timer)
     }
     render() {
         const {lapse, running} = this.state;
@@ -49,7 +59,31 @@ class StopWatch extends React.Component {
     }
 }
 
-const element = <StopWatch />
+class App extends React.Component {
+    state = {showStopWatch: true}
+    render() {
+        const {showStopWatch} = this.state
+        return (
+            <div>
+                <label>
+                    Show Stop Watch{' '}
+                    <input
+                        type="checkbox"
+                        checked={showStopWatch}
+                        onChange={() =>
+                            this.setState(s => ({
+                                showStopWatch: !s.showStopWatch,
+                            }))}
+                    />
+                </label>
+                <hr />
+                {showStopWatch ? <StopWatch /> : null}
+            </div>
+        )
+    }
+}
+
+const element = <App />
 ReactDOM.render(
     element,
     document.getElementById('root')

@@ -1,0 +1,51 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+class Counter extends React.Component {
+
+    state = {count: 0}
+    
+    handleClick = () => {
+        this.setState(({count}) => ({
+            count: count + 1,
+        }))
+    }
+
+    render() {
+        return (
+            <button
+                onClick={this.handleClick}>
+                {this.state.count}
+            </button>
+        )
+    }
+}
+const element = <Counter />
+ReactDOM.render(
+    element,
+    document.getElementById('root')
+)
+</script>
+
+
+<!-- 
+var bob = {
+    name: 'Bob',
+    greet(name) {
+        return `Hi ${name}, my name is ${this.name}!`
+    }
+}
+undefined
+bob.greet('Jane')
+"Hi Jane, my name is Bob!"
+var greetFn = bob.greet
+undefined
+greetFn('Jane')
+"Hi Jane, my name is !"
+var greetFn = bob.greet.bind(bob)
+undefined
+greetFn('Jane')
+"Hi Jane, my name is Bob!" 
+-->
