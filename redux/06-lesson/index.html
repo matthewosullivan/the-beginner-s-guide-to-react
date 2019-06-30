@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title>Plunker</title>
+ <script src="https://wzrd.in/standalone/expect@22.4.3"></script>
+</head>
+<body>
+ <div id='root'></div>
+ <script type="text/javascript">
+
+const toggleTodo = (todo) => {
+    // new method in ES6
+    // return Object.assign({}, todo, {
+    //     completed: !todo.completed
+    // });
+    // object spread operator ES7
+    return {
+        ...todo,
+        completed: !todo.completed
+    };
+};
+
+const testToggleTodo = () => {
+    const todoBefore = {
+        id: 0,
+        text: 'Learn Redux',
+        completed: false
+    };
+    const todoAfter = {
+        id: 0,
+        text: 'Learn Redux',
+        completed: true
+    };
+
+    deepFreeze(todoBefore);
+
+    expect(
+        toggleTodo(todoBefore)
+    ).toEqual(todoAfter);
+}
+
+testToggleTodo();
+
+console.log('All tests passed.');
+
+
+
+// Function exported from deep-freeze lib
+function deepFreeze (o) {
+  if (o===Object(o)) {
+    Object.isFrozen(o) || Object.freeze(o)
+    Object.getOwnPropertyNames(o).forEach(function (prop) {
+      prop==='constructor'||deepFreeze(o[prop])
+    })
+  }
+  return o
+}
+
+</script>
+</body>
+</html>
