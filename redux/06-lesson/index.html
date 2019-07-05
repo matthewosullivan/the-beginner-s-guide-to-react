@@ -10,11 +10,14 @@
  <script type="text/javascript">
 
 const toggleTodo = (todo) => {
+    // todo.completed = !todo.completed; mutating version
+    //
     // new method in ES6
     // return Object.assign({}, todo, {
     //     completed: !todo.completed
     // });
-    // object spread operator ES7
+    // object spread operator is not part of ES6, proposed for ES7, enabled in Babel if you use
+    // stage two preset
     return {
         ...todo,
         completed: !todo.completed

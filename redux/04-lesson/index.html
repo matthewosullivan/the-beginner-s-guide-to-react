@@ -24,6 +24,7 @@ const counter = (state = 0, action) => {
     }
 }
 
+// counter component
 const Counter = ({ 
     value,
     onIncrement,
@@ -50,6 +51,7 @@ const render = () => {
     );
 };
 
+// render functions runs anytime our state changes
 store.subscribe(render);
 render();
 
